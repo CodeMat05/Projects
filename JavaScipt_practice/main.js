@@ -23,7 +23,8 @@ Username   : @${username}
 Course     : ${course}
 University : ${university}
 
-Bio:\n"${bio}"
+Bio:
+"${bio}"
 
 --------------------------------------------------
 
