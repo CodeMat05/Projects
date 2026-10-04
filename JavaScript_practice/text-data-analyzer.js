@@ -23,6 +23,12 @@ let lengthID = employeeID.length;
 let emailUsername = cleanEmail.slice(0, 11);
 let emailDomain = cleanEmail.slice(-11);
 let emailLength = cleanEmail.length;
+let atPosition = cleanEmail.indexOf("@");
+let upperDescription = description.toUpperCase();
+let lowerDescription = description.toLowerCase();
+let lengthDescription = description.length;
+let databaseFound = description.includes("database");
+let webFound = description.includes("web");
 
 console.log(`
 ============================================================
@@ -52,7 +58,7 @@ Last Character : ${lastCharacterName}
 
 ID ANALYSIS
 
-Full ID        : ${cleanName}
+Full ID        : ${employeeID}
 Prefix         : ${prefixID}
 Year           : ${yearID}
 Employee No.   : ${noID}
@@ -67,19 +73,19 @@ EMAIL ANALYSIS
 Clean Email    : ${cleanEmail}
 Username       : ${emailUsername}
 Domain         : ${emailDomain}
-Email Length   : 
-"@" Position   :
+Email Length   : ${emailLength}
+"@" Position   : ${atPosition}
 
 ------------------------------------------------------------
 
 DESCRIPTION ANALYSIS
 
-Original       :
-Uppercase      :
-Lowercase      :
-Description Length :
-"database" Found? :
-"web" Found?      :
+Original           : ${description}
+Uppercase          : ${upperDescription}
+Lowercase          : ${lowerDescription}
+Description Length : ${lengthDescription}
+"database" Found?  : ${databaseFound}
+"web" Found?       : ${webFound}
 
 ============================================================    
 `)
