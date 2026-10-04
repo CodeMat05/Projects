@@ -18,7 +18,7 @@ let firstCharacterID = studentID[0];
 let lastCharacterID = studentID[studentID.length - 1];
 let cleanEmail = trimEmail.toLowerCase();
 let emailUsername = cleanEmail.slice(0,13);
-let domainUsername = cleanEmail.slice(-10);
+let emailDomain = cleanEmail.slice(-10);
 let upperIntroduction = introduction.toUpperCase();
 let lowerIntroduction = introduction.toLowerCase();
 
@@ -57,7 +57,7 @@ EMAIL ANALYSIS
 
 Clean Email        : ${cleanEmail}
 Username           : ${emailUsername}
-Domain             : ${domainUsername}
+Domain             : ${emailDomain}
 
 ------------------------------------------------------------
 
