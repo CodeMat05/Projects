@@ -8,11 +8,15 @@ let totalAssignments = 10;
 let tuitionPaid = true;
 let hasDisciplinaryRecord = false;
 
+let isCollege = age >= 18;
 let averageScore = (quizScore + examScore) / 2;
+let passedAcademically = averageScore >= 75;
 let goodAttendace = attendance >= 85;
-let assignmentComplete = assignmentsCompleted === totalAssignments;
+let completeAssignment = assignmentsCompleted === totalAssignments;
 let tuitionPaidCheck = tuitionPaid === true;
-let hasDisciplinaryRecordCheck = hasDisciplinaryRecord === false;
+let hasDisciplinaryRecordCheck = hasDisciplinaryRecord === true;
+let remainingAssignment = totalAssignments - assignmentsCompleted
+let eligible = isCollege && passedAcademically && goodAttendace && tuitionPaidCheck;
 
 console.log(`
 ============================================================
@@ -36,9 +40,9 @@ Assignments        : ${assignmentsCompleted} / ${totalAssignments}
 
 ELIGIBILITY CHECK
 
-Passed Academically?  :
-Good Attendance?      :
-Assignments Complete? : ${assignmentComplete}
+Passed Academically?  : ${passedAcademically}
+Good Attendance?      : ${goodAttendace}
+Assignments Complete? : ${completeAssignment}
 Tuition Paid?         : ${tuitionPaidCheck}
 Has Discipline Record?: ${hasDisciplinaryRecordCheck}
 
@@ -46,8 +50,8 @@ Has Discipline Record?: ${hasDisciplinaryRecordCheck}
 
 FINAL STATUS
 
-Eligible?            :
-Student Level        :
-Remaining Assignments:
+Eligible?            : ${eligible}
+Student Level        : ${isCollege}
+Remaining Assignments: ${remainingAssignment}
 ============================================================    
 `)
