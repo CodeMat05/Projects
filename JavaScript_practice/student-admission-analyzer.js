@@ -14,13 +14,22 @@ let hasDisciplinaryRecord = false;
 let preferredProgram = "Information Technology";
 
 let averageScore = (mathScore + programmingScore) / 2;
-let attendacePercent = (attendance / 100) * 100;
+let attendancePercent = (attendance / 100) * 100;
 let highestScore = Math.max(mathScore, programmingScore);
 let lowestScore = Math.min(mathScore, programmingScore);
-let isCollege = age >= 18 ? true : false;
-let passedAcademic = averageScore >= 75 ? true : false;
-let goodAttendance
-
+let isCollege = age >= 18;
+let passedAcademic = averageScore >= 75;
+let goodAttendance = attendance >= 80;
+let fullyPaid = amountPaid >= applicationFee;
+let recommendationCheck = hasRecommendation == true;
+let disciplinaryRecordCheck = hasDisciplinaryRecord == true;
+let remainingFee = amountPaid - applicationFee;
+let eligible = isCollege &&
+               passedAcademic &&
+               goodAttendance &&
+               fullyPaid &&
+               recommendationCheck &&
+               !disciplinaryRecordCheck;
 // 90–100 → Excellent
 // 80–89  → Very Good
 // 75–79  → Good
@@ -32,10 +41,48 @@ if (averageScore >= 90 && averageScore <= 100) {
 } else if (averageScore < 90 && averageScore >= 80) {
   studentPerformance = "Very Good";
 } else if (averageScore < 80 && averageScore >= 75) {
-  studentPerformance = " Good";
+  studentPerformance = "Good";
 } else {
   studentPerformance = "Needs Improvement"
 }
+
+// Information Technology → Computing Department
+// Computer Science       → Computing Department
+// Information Systems    → Information Systems Department
+// Networking             → Network Administration Department
+
+let department;
+
+switch (preferredProgram) {
+  case "Information Technology":
+    department = "Computing Department";
+    break;
+  case "Computer Science":
+    department = "Computing Department";
+    break;
+  case "Information Systems":
+    department = "Information Systems Department";
+    break;
+  case "Networking":
+    department = "Network Administration Department";
+    break;
+  default:
+    department = "Unknown Program";
+    break;
+}
+
+// ADMITTED → eligible
+// CONDITIONAL ADMISSION → academic average is at least 75, but another requirement is missing
+// REJECTED → academic average is below 75
+let admissionStatus;
+
+if (eligible) {
+  admissionStatus = "ADMITTED";
+} else if (averageScore >= 75) {
+  admissionStatus = "CONDITIONAL ADMISSION";
+} else {
+  admissionStatus = "REJECTED";
+}  
 
 console.log(`
 ==================================================
@@ -56,33 +103,33 @@ Average Score      : ${averageScore}
 Highest Score      : ${highestScore}
 Lowest Score       : ${lowestScore}
 Performance        : ${studentPerformance}
-Attendance         : ${attendacePercent}%
+Attendance         : ${attendancePercent}%
 
 --------------------------------------------------
 APPLICATION CHECK
 --------------------------------------------------
 
-College Age?       : ${isCollege}
-Passed Academics?  : 
-Good Attendance?   : 
-Fee Fully Paid?    : 
-Recommendation?    : 
-Disciplinary Record?: 
+College Age?        : ${isCollege}
+Passed Academics?   : ${passedAcademic}
+Good Attendance?    : ${goodAttendance}
+Fee Fully Paid?     : ${fullyPaid}
+Recommendation?     : ${recommendationCheck}
+Disciplinary Record?: ${disciplinaryRecordCheck}
 
-Remaining Fee      : 0
+Remaining Fee      : ${remainingFee}
 
 --------------------------------------------------
 PROGRAM
 --------------------------------------------------
 
-Department         : Computing Department
+Department         : ${department}
 
 --------------------------------------------------
 FINAL STATUS
 --------------------------------------------------
 
-Admission Status   : ADMITTED
-Eligible?          : true
+Admission Status   : ${admissionStatus}
+Eligible?          : ${eligible}
 
 ==================================================  
 `)
